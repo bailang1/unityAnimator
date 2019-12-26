@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: b3bfec3e4649bdb4d9ef31ba8173b4fa
+timeCreated: 1526761651
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - Manager: {instanceID: 0}
+  - nodeText: {fileID: 4900000, guid: 1498692fa77ecc6418f1fb77038715fc, type: 3}
+  - elementText: {fileID: 4900000, guid: a1f7c8301d121774584fa037960e81c6, type: 3}
+  - faceText: {fileID: 4900000, guid: 4dee632090d027c468bed3a3ffd773fc, type: 3}
+  executionOrder: 0
+  icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

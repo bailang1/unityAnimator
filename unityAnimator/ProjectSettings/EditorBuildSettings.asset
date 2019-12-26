@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 8360403f8baa01e4d9539291494c1445
+  - enabled: 1
+    path: Assets/__Scenes/physicsScenes/solids/Scenef1.unity
+    guid: 8fffa1bf43c3c63469057124bb63bc84
+  - enabled: 1
+    path: Assets/__Scenes/physicsScenes/solids/Scenef2.unity
+    guid: 213cab729f9b1464883d6040f56ce3ca
+  - enabled: 1
+    path: Assets/__Scenes/physicsScenes/solids/Scenef3.unity
+    guid: 04c5459b3dd694648b408aaf9f7e7700
+  - enabled: 1
+    path: Assets/__Scenes/physicsScenes/solids/Scenef4.unity
+    guid: 89e80d3ff40d8824e93865d44cfe6e5b
+  - enabled: 1
+    path: Assets/__Scenes/infinitePlane.unity
+    guid: 36db4934ec2def340bb54003e920f0f0
+  - enabled: 1
+    path: Assets/__Scenes/ScenaryWithOutPhysics.unity
+    guid: c0a17bcf3ea7e4341818bd65936b948b
+  - enabled: 1
+    path: Assets/__Scenes/ScenaryWithPhysics.unity
+    guid: a588e542fee2feb408afa1d28bbaf08a
+  - enabled: 1
+    path: Assets/__Scenes/physicsScenes/fabrics/Scene1.unity
+    guid: a2bd0d7af057ad54f960595f75b235d4
+  - enabled: 1
+    path: Assets/__Scenes/physicsScenes/fabrics/Scene2.unity
+    guid: 74907984a63e823489529bf4649fd599
+  - enabled: 1
+    path: Assets/__Scenes/physicsScenes/fabrics/Scene3.unity
+    guid: fbfb9dd6948ddd444ad388c0c67578ec
+  - enabled: 1
+    path: Assets/__Scenes/physicsScenes/fabrics/Scene4.unity
+    guid: ee4f7d2703c29554fbfaa7e972d2b4c5
+  - enabled: 1
+    path: Assets/__Scenes/physicsScenes/fabrics/Scene5.unity
+    guid: e3ffce2a71ad7d240a2e26cf2e3ed402
+  - enabled: 1
+    path: Assets/__Scenes/physicsScenes/fabrics/Scene6.unity
+    guid: ba943e7bcf3428c4db015f4d07e772e4
+  - enabled: 1
+    path: Assets/__Scenes/physicsScenes/fabrics/Scene7.unity
+    guid: 46074b4d78d9a5a42b2f62a4814c8c92
+  - enabled: 1
+    path: Assets/__Scenes/physicsScenes/fabrics/Scene8.unity
+    guid: 3889482cd22eee749988ae9ca1758573
+  m_configObjects: {}
