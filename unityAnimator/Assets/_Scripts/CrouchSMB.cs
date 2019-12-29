@@ -8,6 +8,8 @@ public class CrouchSMB : StateMachineBehaviour
     private float timePass;
     private float idleId;
     private bool idleUpdate;
+    private ControlCharacter controlCharacter;
+
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -15,23 +17,20 @@ public class CrouchSMB : StateMachineBehaviour
         idleId = 0.0f;
         animator.SetFloat("Idle", 0.0f);
         idleUpdate = false;
+        controlCharacter = animator.GetComponent<ControlCharacter>();
     }
 
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-
-        if (Input.GetKeyUp(KeyCode.C) || animator.GetBool("IKActivated"))
+        if (controlCharacter.getActualState() != ControlCharacter.State.CROUCH || animator.GetBool("IKActivated"))
         {
             //If c pressed or a ik movement is activated exit of crouch mode
             animator.SetBool("Crouch", false);
         }
 
-        Vector2 input = new Vector2(horizontal, vertical).normalized;
+        Vector2 input = controlCharacter.getDirection();
 
         if (input == Vector2.zero)
         {

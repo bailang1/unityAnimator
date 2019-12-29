@@ -21,9 +21,11 @@ public class LocomotionSMB : StateMachineBehaviour
     private float sneakId;
     private bool sneakUpdate;
     private bool idleFaceUpdate;
+    private ControlCharacter controlCharacter;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        controlCharacter = animator.GetComponent<ControlCharacter>();
         timePass = idleId = faceId = 0.0f;
         idleUpdate = sneakUpdate = idleFaceUpdate = false;
         timeForLastIdle = originalTimeForLastIdle;
@@ -50,9 +52,7 @@ public class LocomotionSMB : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //Get values of movement
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-        Vector2 input = new Vector2(horizontal, vertical).normalized;
+        Vector2 input = controlCharacter.getDirection();
 
         if (animator.GetBool("IKActivated"))
         {
@@ -61,43 +61,39 @@ public class LocomotionSMB : StateMachineBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.LeftAlt))
-            {
-                //enter in sneak mode
-                setSneaking(animator, true);
-            }
-            else if (Input.GetKeyUp(KeyCode.LeftAlt))
-            {
-                //exit of sneak mode
-                setSneaking(animator, false);
-            }
-            else if (runEnable && Input.GetKey(KeyCode.LeftShift))
-            {
-                //run mode
-                if (Input.GetKeyDown(KeyCode.Space) && input.Equals(Vector2.up))
-                {
-                    //jump must be only enable on running
-                    animator.SetTrigger("Jump");
-                }
-                //movement increased, run backwards must be forbidden
-                input.y = Mathf.Max(2.0f * input.y, 0.0f);
-                input.x = 2.0f * input.x;
-
-            }
-            else updateAnimatorSneak(animator);//checks and performs id necesary a update of the sneak parameter gradually
-
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                //sent to crouch state
-                animator.SetBool("Crouch", true);
-            }
-            if (Input.GetKeyDown(KeyCode.X))
+            ControlCharacter.State animatorState = controlCharacter.getActualState();
+            if (animatorState == ControlCharacter.State.CHANGE_IDLE)
             {
                 //Extra key for change the idle
                 timeForLastIdle = originalTimeForLastIdle;
                 timeForNextIdle = timeForChangeIdle;
                 timePass = 0.0f;
                 changeIdle(animator);
+            }
+            else if (animatorState == ControlCharacter.State.CROUCH)
+            {
+                animator.SetBool("Crouch", true);
+            }
+            else if (animatorState == ControlCharacter.State.JUMP)
+            {
+                animator.SetTrigger("Jump");
+            }
+            else if (animatorState == ControlCharacter.State.SNEAK)
+            {
+                if (this.sneakId != 1.0f)
+                {
+                    setSneaking(animator, true);
+                }
+                updateAnimatorSneak(animator);
+
+            }
+            else
+            {
+                if (this.sneakId != 0.0f)
+                {
+                    setSneaking(animator, false);
+                }
+                updateAnimatorSneak(animator);
             }
 
             if (input == Vector2.zero)

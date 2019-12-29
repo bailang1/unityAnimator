@@ -34,6 +34,9 @@ public class GenerateSceneMenu : MonoBehaviour
     [SerializeField] private List<string> scenesFileNames;
     [SerializeField] private List<string> scenesTitles;
     [SerializeField] private Transform menuGameObject;
+    [SerializeField] private Transform sceneButtonExit;
+    [SerializeField] private GameObject sceneButtonMenu;
+    [SerializeField] private GameObject menuScrollView;
     [SerializeField] private GameObject menuButtonPrefab;
     #endregion
     private List<MenuScene> menuScenes = new List<MenuScene>();
@@ -69,6 +72,15 @@ public class GenerateSceneMenu : MonoBehaviour
             GameObject sceneButtonObject = Instantiate(menuButtonPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
             string sceneFileName = this.menuScenes[sceneId].getFileName();
             sceneButtonObject.GetComponent<SceneMenuButton>().initialize(this.menuScenes[sceneId].getTitle(), sceneFileName, menuGameObject, sceneFileName != SceneManager.GetActiveScene().name);
+        }
+        this.sceneButtonExit.transform.SetSiblingIndex(this.menuScenes.Count);
+    }
+
+    void Update(){
+        if(Input.GetKeyDown((KeyCode.M))){
+            bool showMenu = menuScrollView.activeSelf;
+            menuScrollView.SetActive(!showMenu);
+            sceneButtonMenu.SetActive(showMenu);
         }
     }
 
