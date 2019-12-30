@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/__Scenes/church.unity
     guid: c0a17bcf3ea7e4341818bd65936b948b
+  - enabled: 1
+    path: Assets/__Scenes/drinkAndFaces.unity
+    guid: 6a31570721191324e866c4898c927e3c
   m_configObjects: {}

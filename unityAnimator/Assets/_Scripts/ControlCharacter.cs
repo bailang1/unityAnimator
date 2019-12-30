@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ControlCharacter : MonoBehaviour
 {
 
-    public enum State { RUN, SNEAK, CROUCH, JUMP, NORMAL, CHANGE_IDLE };
+    public enum State { RUN, SNEAK, CROUCH, JUMP, NORMAL, CHANGE_IDLE, ACTIVATE_IK };
 
     [SerializeField] private Joystick joystick;
     [SerializeField] private ToggleGroup toggleGroup;
@@ -17,6 +17,7 @@ public class ControlCharacter : MonoBehaviour
     [SerializeField] private Button jumpButton;
     [SerializeField] private Button changeIdleButton;
     [SerializeField] private Button changeCameraButton;
+    [SerializeField] private Button activateIK;
 
     private CameraChange cameraChange;
     private Vector2 moveDirection = Vector2.zero;
@@ -33,9 +34,22 @@ public class ControlCharacter : MonoBehaviour
         this.crouchToggle.onValueChanged.AddListener(delegate { this.changeToggled(State.CROUCH, this.crouchToggle); });
         this.sneakToggle.onValueChanged.AddListener(delegate { this.changeToggled(State.SNEAK, this.sneakToggle); });
 
-        this.jumpButton.onClick.AddListener(delegate { this.setState(State.JUMP); });
-        this.changeIdleButton.onClick.AddListener(delegate { this.setState(State.CHANGE_IDLE); });
-        this.changeCameraButton.onClick.AddListener(delegate { this.cameraChange.nextCamera(); });
+        if (this.jumpButton != null)
+        {
+            this.jumpButton.onClick.AddListener(delegate { this.setState(State.JUMP); });
+        }
+        if (this.changeIdleButton != null)
+        {
+
+            this.changeIdleButton.onClick.AddListener(delegate { this.setState(State.CHANGE_IDLE); });
+        }
+        if (this.activateIK != null) {
+            this.activateIK.onClick.AddListener(delegate { this.setState(State.ACTIVATE_IK); });
+        }
+        if (this.changeCameraButton != null)
+        {
+            this.changeCameraButton.onClick.AddListener(delegate { this.cameraChange.nextCamera(); });
+        }
     }
 
     private void changeToggled(State newState, Toggle toggle)
@@ -109,7 +123,7 @@ public class ControlCharacter : MonoBehaviour
 
     public State getActualState()
     {
-        if (this.actualState == State.JUMP || this.actualState == State.CHANGE_IDLE)
+        if (this.actualState == State.JUMP || this.actualState == State.CHANGE_IDLE || this.actualState == State.ACTIVATE_IK)
         {
             return restoreState();
         }
@@ -149,6 +163,10 @@ public class ControlCharacter : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.X))
         {
             setState(State.CHANGE_IDLE);
+        }
+        else if (Input.GetKeyDown(KeyCode.T))
+        {
+            setState(State.ACTIVATE_IK);
         }
         else if (Input.GetKeyDown(KeyCode.R))
         {

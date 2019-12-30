@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Unity WebGL Player | New Unity Project</title>
+  <script src="Build/UnityLoader.js"></script>
+  <script>
+    UnityLoader.instantiate("unityContainer", "Build/Build.json");
+  </script>
+</head>
+
+<body>
+  <div id="unityContainer" style="margin: auto"></div>
+  <script>
+    var unityContainer = document.getElementById("unityContainer");
+    document.getElementsByTagName("BODY")[0].onresize = function () {
+      resizeCanvas();
+    };
+    document.getElementsByTagName("BODY")[0].onload = function () {
+      resizeCanvas();
+    };
+    function resizeCanvas() {
+      var width = window.innerWidth
+        || document.documentElement.clientWidth
+        || document.body.clientWidth;
+
+      var height = window.innerHeight
+        || document.documentElement.clientHeight
+        || document.body.clientHeight;
+        unityContainer.style.width = (0.95*width)+"px";
+        unityContainer.style.height = (0.95*height)+"px";
+      console.log(unityContainer+"w: " + width + " h: " + height);
+
+    }
+  </script>
+</body>
+
+</html>

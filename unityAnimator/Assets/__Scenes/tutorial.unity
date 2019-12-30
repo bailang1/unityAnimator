@@ -1203,9 +1203,15 @@ MonoBehaviour:
 
     Press <b>Space</b> to jump.
 
+    Press <b>X</b> to change the idle animation and the face.
+
     Press <b>R</b> to change camera.
 
-    Press <b>M</b> to open the scene menu.'
+    Press <b>M</b> to open the scene menu.
+
+    Press <b>T</b> to pick up an object and drink.
+
+    You can only pick up the object and change faces in the corresponding scene.'
 --- !u!222 &1636021575
 CanvasRenderer:
   m_ObjectHideFlags: 0

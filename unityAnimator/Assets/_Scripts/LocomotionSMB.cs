@@ -22,10 +22,12 @@ public class LocomotionSMB : StateMachineBehaviour
     private bool sneakUpdate;
     private bool idleFaceUpdate;
     private ControlCharacter controlCharacter;
+    private IKMovement iKMovement;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         controlCharacter = animator.GetComponent<ControlCharacter>();
+        iKMovement = animator.GetComponent<IKMovement>();
         timePass = idleId = faceId = 0.0f;
         idleUpdate = sneakUpdate = idleFaceUpdate = false;
         timeForLastIdle = originalTimeForLastIdle;
@@ -70,6 +72,10 @@ public class LocomotionSMB : StateMachineBehaviour
                 timePass = 0.0f;
                 changeIdle(animator);
             }
+            else if (animatorState == ControlCharacter.State.ACTIVATE_IK)
+            {
+                iKMovement.startMoving();
+            }
             else if (animatorState == ControlCharacter.State.CROUCH)
             {
                 animator.SetBool("Crouch", true);
@@ -85,7 +91,6 @@ public class LocomotionSMB : StateMachineBehaviour
                     setSneaking(animator, true);
                 }
                 updateAnimatorSneak(animator);
-
             }
             else
             {

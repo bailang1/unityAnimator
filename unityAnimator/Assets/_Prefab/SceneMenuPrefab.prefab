@@ -385,10 +385,12 @@ MonoBehaviour:
   - tutorial
   - infinitePlane
   - church
+  - drinkAndFaces
   scenesTitles:
   - Tutorial
   - Character in a plane
   - Character in a church
+  - Pick up a drink / Change Faces
   menuGameObject: {fileID: 3529772395475960058}
   sceneButtonExit: {fileID: 3529772395277299286}
   sceneButtonMenu: {fileID: 3529772395273289371}
